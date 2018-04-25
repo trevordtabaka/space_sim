@@ -4,13 +4,31 @@ import java.util.ArrayList;
 
 public class Rocket implements Spaceship {
 
-    int cost;
-    int weight;
-    int cargoWeight;
-    ArrayList<Item> items;
-    int maxWeight;
-    double launchExplosion;
-    double landingExplosion;
+    private int cost;
+    private int weight;
+    private int cargoWeight = 0;
+    private ArrayList<Item> items;
+    private int maxWeight;
+    private double launchExplosionFactor;
+    private double landingExplosionFactor;
+
+
+    public Rocket(int cost, int weight, ArrayList<Item> items, int maxWeight, double launchExplosionFactor, double landingExplosionFactor) {
+        this.cost = cost;
+        this.weight = weight;
+        setItems(items);
+        this.maxWeight = maxWeight;
+        this.launchExplosionFactor = launchExplosionFactor;
+        this.landingExplosionFactor = landingExplosionFactor;
+    }
+
+    public Rocket(int cost, int weight, int maxWeight, double launchExplosionFactor, double landingExplosionFactor) {
+        this.cost = cost;
+        this.weight = weight;
+        this.maxWeight = maxWeight;
+        this.launchExplosionFactor = launchExplosionFactor;
+        this.landingExplosionFactor = landingExplosionFactor;
+    }
 
     public boolean launch() {
         return true;
@@ -34,5 +52,70 @@ public class Rocket implements Spaceship {
         cargoWeight = cargoWeight + item.weight;
     }
 
+    public int getCost() {
+        return cost;
+    }
 
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getCargoWeight() {
+        return cargoWeight;
+    }
+
+    public void setCargoWeight(int cargoWeight) {
+        this.cargoWeight = cargoWeight;
+    }
+
+    public int getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(int maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public double getLaunchExplosionFactor() {
+        return launchExplosionFactor;
+    }
+
+    public void setLaunchExplosionFactor(double launchExplosionFactor) {
+        this.launchExplosionFactor = launchExplosionFactor;
+    }
+
+    public double getLandingExplosionFactor() {
+        return landingExplosionFactor;
+    }
+
+    public void setLandingExplosionFactor(double landingExplosionFactor) {
+        this.landingExplosionFactor = landingExplosionFactor;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+
+        for (Item i : items) {
+            if (canCarry(i))
+                carry(i);
+            else {
+                System.out.println(i.name + " was not able to be loaded. " +
+                        "The available weight remaining is " + (maxWeight - (getCargoWeight() + weight)
+                        + " and the item weighs " + i.weight)
+                );
+            }
+
+        }
+    }
 }
