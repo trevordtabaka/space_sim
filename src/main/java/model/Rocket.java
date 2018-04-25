@@ -7,7 +7,7 @@ public class Rocket implements Spaceship {
     private int cost;
     private int weight;
     private int cargoWeight = 0;
-    private ArrayList<Item> items;
+    private ArrayList<Item> items= new ArrayList<Item>(10);
     private int maxWeight;
     private double launchExplosionFactor;
     private double landingExplosionFactor;
@@ -39,8 +39,8 @@ public class Rocket implements Spaceship {
     }
 
     public boolean canCarry(Item item) {
-
-        if((item.weight+cargoWeight)<=maxWeight) {
+        int totalWeight = item.weight+cargoWeight+weight;
+        if(totalWeight<=maxWeight) {
             return true;
         }
         return false;
