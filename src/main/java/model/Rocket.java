@@ -2,6 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * The Rocket class
+ *
+ */
 public class Rocket implements Spaceship {
 
     private int cost;
@@ -38,6 +42,12 @@ public class Rocket implements Spaceship {
         return true;
     }
 
+    /**
+     * canCarry method takes in an Item object and checks if there is enough weight capacity remaining in the Rocket
+     * object. If so, it returns true. If not, false is returned.
+     * @param item
+     * @return
+     */
     public boolean canCarry(Item item) {
         int totalWeight = item.weight+cargoWeight+weight;
         if(totalWeight<=maxWeight) {
@@ -46,6 +56,10 @@ public class Rocket implements Spaceship {
         return false;
     }
 
+    /**
+     * carry method takes in an Item object and adds it to the Items ArrayList and updates the cargoWeight member
+     * @param item
+     */
     public void carry(Item item) {
         items.add(item);
         cargoWeight = cargoWeight + item.weight;
@@ -103,6 +117,15 @@ public class Rocket implements Spaceship {
         return items;
     }
 
+    /**
+     *  setItems()
+     * @param items
+     * Takes in an arraylist of type Item. One by one sends an Item object to canCarry
+     * to see if the Rocket object has enough weight holding capacity available still. If it does it calls the carry() method
+     * to add the item to the Item arraylist. If not you get a message reporting that it wasn't with the situation
+     * around the weight availability.
+     *
+     */
     public void setItems(ArrayList<Item> items) {
 
         for (Item i : items) {
