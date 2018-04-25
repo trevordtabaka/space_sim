@@ -14,11 +14,11 @@ public class U2 extends Rocket {
 
 
     public U2(ArrayList<Item> items) {
-        super(100000000, 10000, items, 18000, .05, .01);
+        super(120000000, 18000, items, 29000, .04, .08);
     }
 
     public U2() {
-        super(100000000, 10000, 18000, .05, .01);
+        super(120000000, 18000, 29000, .04, .08);
     }
 
     @Override
