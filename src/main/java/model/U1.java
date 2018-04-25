@@ -23,11 +23,31 @@ public class U1 extends Rocket {
 
     @Override
     public boolean launch() {
-        return super.launch();
-    }
 
+
+        double probability = getLaunchExplosionFactor()*((getCargoWeight()+getWeight())/getMaxWeight());
+        if(randomNumberGenerator(100) >= (randomNumberGenerator(100) * probability)){
+            System.out.println("Successful Launch!!!");
+            return true;
+        }else{
+
+            System.out.println("Launching has failed..Boom");
+            return false;                                                                                   }
+        }
     @Override
     public boolean land() {
-        return super.land();
+        double probability = getLandingExplosionFactor()*((getCargoWeight()+getWeight())/getMaxWeight());
+        if(randomNumberGenerator(100) >= (randomNumberGenerator(100) * probability)){
+            System.out.println("Successful Landing!!!");
+            return true;
+        }else{
+
+            System.out.println("Landing has failed..Boom");
+            return false;
+        }
+    }
+    private int randomNumberGenerator(int max){
+        int random = (int )(Math.random() * max + 1);
+        return random;
     }
 }

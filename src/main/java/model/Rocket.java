@@ -41,7 +41,6 @@ public class Rocket implements Spaceship {
     public boolean canCarry(Item item) {
 
         if((item.weight+cargoWeight)<=maxWeight) {
-            carry(item);
             return true;
         }
         return false;
