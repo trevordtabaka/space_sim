@@ -1,12 +1,16 @@
 package simulation;
 
+import com.sun.tools.javac.jvm.Items;
 import model.Item;
+import model.U1;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Simulation {
 
@@ -35,4 +39,25 @@ public class Simulation {
         return itemArrayList;
     }
 
+    public ArrayList<U1> loadU1(ArrayList<Items> itemsArrayList){
+
+
+
+
+        return null;
+    }
+
+    public static ArrayList<Item> itemBubbleSort(ArrayList<Item> itemArrayList){
+
+        for(int i = 0; i < itemArrayList.size(); i++){
+
+            for(int j=1; j < itemArrayList.size()-i; j++){
+
+                if(itemArrayList.get(j-1).getWeight() < itemArrayList.get(j).getWeight()){
+                    Collections.swap(itemArrayList, j-1, j);
+                }
+            }
+        }
+        return itemArrayList;
+    }
 }
