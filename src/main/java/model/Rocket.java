@@ -49,7 +49,7 @@ public class Rocket implements Spaceship {
      * @return
      */
     public boolean canCarry(Item item) {
-        int totalWeight = item.weight+cargoWeight+weight;
+        int totalWeight = item.getWeight()+cargoWeight+weight;
         if(totalWeight<=maxWeight) {
             return true;
         }
@@ -62,7 +62,7 @@ public class Rocket implements Spaceship {
      */
     public void carry(Item item) {
         items.add(item);
-        cargoWeight = cargoWeight + item.weight;
+        cargoWeight = cargoWeight + item.getWeight();
     }
 
     public int getCost() {
@@ -132,9 +132,9 @@ public class Rocket implements Spaceship {
             if (canCarry(i))
                 carry(i);
             else {
-                System.out.println(i.name + " was not able to be loaded. " +
+                System.out.println(i.getName() + " was not able to be loaded. " +
                         "The available weight remaining is " + (maxWeight - (getCargoWeight() + weight)
-                        + " and the item weighs " + i.weight)
+                        + " and the item weighs " + i.getWeight())
                 );
             }
 
