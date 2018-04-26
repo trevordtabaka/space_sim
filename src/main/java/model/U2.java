@@ -13,12 +13,12 @@ public class U2 extends Rocket {
 
 
 
-    public U2(ArrayList<Item> items) {
-        super(120000000, 18000, items, 29000, .04, .08);
+    public U2(String name, ArrayList<Item> items) {
+        super(name,120000000, 18000, items, 29000, .04, .08);
     }
 
-    public U2() {
-        super(120000000, 18000, 29000, .04, .08);
+    public U2(String name) {
+        super(name, 120000000, 18000, 29000, .04, .08);
     }
     /**
      * launch method creates a number using the randomNumberGenerator method between 1 and 100 and multiplies this by

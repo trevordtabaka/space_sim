@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  */
 public class Rocket implements Spaceship {
-
+    private String name;
     private int cost;
     private int weight;
     private int cargoWeight = 0;
@@ -17,7 +17,8 @@ public class Rocket implements Spaceship {
     private double landingExplosionFactor;
 
 
-    public Rocket(int cost, int weight, ArrayList<Item> items, int maxWeight, double launchExplosionFactor, double landingExplosionFactor) {
+    public Rocket(String name, int cost, int weight, ArrayList<Item> items, int maxWeight, double launchExplosionFactor, double landingExplosionFactor) {
+        this.name = name;
         this.cost = cost;
         this.weight = weight;
         setItems(items);
@@ -26,7 +27,9 @@ public class Rocket implements Spaceship {
         this.landingExplosionFactor = landingExplosionFactor;
     }
 
-    public Rocket(int cost, int weight, int maxWeight, double launchExplosionFactor, double landingExplosionFactor) {
+    public Rocket(String name,int cost, int weight, int maxWeight, double launchExplosionFactor, double landingExplosionFactor) {
+
+        this.name = name;
         this.cost = cost;
         this.weight = weight;
         this.maxWeight = maxWeight;
@@ -51,8 +54,11 @@ public class Rocket implements Spaceship {
     public boolean canCarry(Item item) {
         int totalWeight = item.getWeight()+cargoWeight+weight;
         if(totalWeight<=maxWeight) {
+            System.out.println("Able to carry "+ item.getName());
             return true;
         }
+        System.out.println("Unable to carry "+ item.getName());
+
         return false;
     }
 
@@ -63,6 +69,7 @@ public class Rocket implements Spaceship {
     public void carry(Item item) {
         items.add(item);
         cargoWeight = cargoWeight + item.getWeight();
+        System.out.println("Now carrying " + item.getName() + " and total weight is " + (cargoWeight + weight));
     }
 
     public int getCost() {
@@ -139,5 +146,19 @@ public class Rocket implements Spaceship {
             }
 
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Rocket{" +
+                "name='" + name + '\'' +
+                ", cost=" + cost +
+                ", weight=" + weight +
+                ", cargoWeight=" + cargoWeight +
+                ", items=" + items +
+                ", maxWeight=" + maxWeight +
+                ", launchExplosionFactor=" + launchExplosionFactor +
+                ", landingExplosionFactor=" + landingExplosionFactor +
+                '}';
     }
 }

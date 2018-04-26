@@ -1,6 +1,5 @@
 package simulation;
 
-import com.sun.tools.javac.jvm.Items;
 import model.Item;
 import model.U1;
 
@@ -9,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Simulation {
@@ -39,7 +37,37 @@ public class Simulation {
         return itemArrayList;
     }
 
-    public ArrayList<U1> loadU1(ArrayList<Items> itemsArrayList){
+    public ArrayList<U1> loadU1(ArrayList<Item> itemsArrayList){
+
+        ArrayList<Item> itemsU1 = itemsArrayList;
+        ArrayList<Item> SortedItemsArrayList = itemBubbleSort(itemsArrayList);
+        ArrayList<U1> u1RocketFleet = new ArrayList();
+        ArrayList<Item> remainingItems = new ArrayList<>();
+        U1 u1Rocket;
+        int loopCount=0;
+        do {
+            if(loopCount !=0){
+                SortedItemsArrayList = remainingItems;
+            }
+            remainingItems = new ArrayList<Item>();
+            u1Rocket = new U1("U1_" + U1.getU1Count());
+            for (Item item : SortedItemsArrayList) {
+                if (u1Rocket.canCarry(item)) {
+                    u1Rocket.carry(item);
+
+                } else {
+                    remainingItems.add(item);
+                    System.out.println("Added uncarriable " + item.getName() + " to the remainingItems array");
+                }
+            }
+            loopCount++;
+            u1RocketFleet.add(u1Rocket);
+        }while(remainingItems.size() != 0);
+
+        System.out.println(u1RocketFleet.toString());
+        System.out.println("U1 rocket fleet is " + u1RocketFleet.size() + " rockets in total");
+
+
 
 
 
