@@ -11,14 +11,18 @@ public class U1 extends Rocket {
 //    double launchExplosionFactor = .05;
 //    double landingExplosionFactor = .01;
 
+    private static int u1Count=0;
 
 
-    public U1(ArrayList<Item> items) {
-        super(100000000, 10000, items, 18000, .05, .01);
+
+    public U1(String name, ArrayList<Item> items) {
+        super(name,100000000, 10000, items, 18000, .05, .01);
+        u1Count++;
     }
 
-    public U1() {
-        super(100000000, 10000, 18000, .05, .01);
+    public U1(String name) {
+        super(name,100000000, 10000, 18000, .05, .01);
+        u1Count++;
     }
 
     /**
@@ -64,4 +68,12 @@ public class U1 extends Rocket {
         int random = (int )(Math.random() * max + 1);
         return random;
     }
+
+
+
+    public static int getU1Count() {
+        return u1Count;
+    }
+
+
 }

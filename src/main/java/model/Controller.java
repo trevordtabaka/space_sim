@@ -37,7 +37,7 @@ public class Controller {
         itemArrayList.add(item6);
 
         Simulation simulation = new Simulation();
-        simulation.loadU1(itemArrayList);
+        simulation.loadU2(itemArrayList);
         itemArrayList = itemBubbleSort(itemArrayList);
 
 

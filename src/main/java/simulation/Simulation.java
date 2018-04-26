@@ -2,7 +2,7 @@ package simulation;
 
 import model.Item;
 import model.U1;
-
+import model.U2;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -72,7 +72,44 @@ public class Simulation {
 
 
 
-        return null;
+        return u1RocketFleet;
+    }
+    public ArrayList<U2> loadU2(ArrayList<Item> itemsArrayList){
+
+        ArrayList<Item> itemsU1 = itemsArrayList;
+        ArrayList<Item> SortedItemsArrayList = itemBubbleSort(itemsArrayList);
+        ArrayList<U2> u2RocketFleet = new ArrayList();
+        ArrayList<Item> remainingItems = new ArrayList<>();
+        U2 u2Rocket;
+        int loopCount=0;
+        do {
+            if(loopCount !=0){
+                SortedItemsArrayList = remainingItems;
+            }
+            remainingItems = new ArrayList<Item>();
+            u2Rocket = new U2("U2_" + U2.getU2Count());
+            for (Item item : SortedItemsArrayList) {
+                if (u2Rocket.canCarry(item)) {
+                    u2Rocket.carry(item);
+
+                } else {
+                    remainingItems.add(item);
+                    System.out.println("Added uncarriable " + item.getName() + " to the remainingItems array");
+                }
+            }
+            loopCount++;
+            u2RocketFleet.add(u2Rocket);
+        }while(remainingItems.size() != 0);
+
+        System.out.println(u2RocketFleet.toString());
+        System.out.println("U2 rocket fleet is " + u2RocketFleet.size() + " rockets in total");
+
+
+
+
+
+
+        return u2RocketFleet;
     }
 
     public static ArrayList<Item> itemBubbleSort(ArrayList<Item> itemArrayList){

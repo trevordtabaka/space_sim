@@ -10,15 +10,18 @@ public class U2 extends Rocket {
 //    ArrayList<Item> items;
 //    double launchExplosionFactor = .04;
 //    double landingExplosionFactor = .08;
-
+private static int u2Count=0;
 
 
     public U2(String name, ArrayList<Item> items) {
         super(name,120000000, 18000, items, 29000, .04, .08);
+        u2Count++;
     }
 
     public U2(String name) {
+
         super(name, 120000000, 18000, 29000, .04, .08);
+        u2Count++;
     }
     /**
      * launch method creates a number using the randomNumberGenerator method between 1 and 100 and multiplies this by
@@ -63,5 +66,8 @@ public class U2 extends Rocket {
     private int randomNumberGenerator(int max) {
         int random = (int) (Math.random() * max + 1);
         return random;
+    }
+    public static int getU2Count() {
+        return u2Count;
     }
 }
