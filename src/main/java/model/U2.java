@@ -14,13 +14,13 @@ private static int u2Count=0;
 
 
     public U2(String name, ArrayList<Item> items) {
-        super(name,120000000, 18000, items, 29000, .04, .08);
+        super(name,120000000, 18000, items, 29000, .25, .25);
         u2Count++;
     }
 
     public U2(String name) {
 
-        super(name, 120000000, 18000, 29000, .04, .08);
+        super(name, 120000000, 18000, 29000, .25, .25);
         u2Count++;
     }
     /**
@@ -35,7 +35,7 @@ private static int u2Count=0;
     public boolean launch() {
 
 
-        double probability = getLaunchExplosionFactor()*((getCargoWeight()+getWeight())/getMaxWeight());
+        double probability = getLaunchExplosionFactor()*((getCargoWeight()+(double) getWeight())/getMaxWeight());
         if(randomNumberGenerator(100) >= (randomNumberGenerator(100) * probability)){
             System.out.println("Successful Launch!!!");
             return true;
@@ -53,7 +53,7 @@ private static int u2Count=0;
      */
     @Override
     public boolean land() {
-        double probability = getLandingExplosionFactor()*((getCargoWeight()+getWeight())/getMaxWeight());
+        double probability = getLandingExplosionFactor()*((getCargoWeight()+(double) getWeight())/getMaxWeight());
         if(randomNumberGenerator(100) >= (randomNumberGenerator(100) * probability)){
             System.out.println("Successful Landing!!!");
             return true;

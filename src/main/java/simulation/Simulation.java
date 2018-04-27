@@ -1,6 +1,7 @@
 package simulation;
 
 import model.Item;
+import model.Rocket;
 import model.U1;
 import model.U2;
 import java.io.BufferedReader;
@@ -15,6 +16,40 @@ public class Simulation {
     ArrayList<Item> itemArrayList= new ArrayList(10);
     String pathDirPhase1 = "/Users/trevortabaka/Documents/CodingNomads/space_sim/src/main/resources/phase-1.txt";
     String pathDirPhase2 = "/Users/trevortabaka/Documents/CodingNomads/space_sim/src/main/resources/phase-2.txt";
+
+    public int runSimulation(ArrayList<? extends Rocket> rocketArrayList){
+
+        int budget = 0;
+
+        for(Rocket rocket: rocketArrayList){
+
+            boolean didNotCrashFlag = true;
+            do{
+
+                budget = budget + rocket.getCost();
+                System.out.println("Update buget: " + budget);
+                if(!rocket.launch()){
+                    System.out.println(rocket.getName() + " Exploded during launch. Another rocket with the same items will be attempted.");
+                    didNotCrashFlag = false;
+                    continue;
+                }
+                System.out.println(rocket.getName() + " launched successfully. Prepare for landing.");
+                if(!rocket.land()){
+                    System.out.println(rocket.getName() + " Exploded during landing. Another rocket with the same items will be attempted.");
+
+                    didNotCrashFlag = false;
+                    continue;
+                }
+                didNotCrashFlag = true;
+                System.out.println(rocket.getName() + " Rocket trip Successful.");
+
+
+            }while (!didNotCrashFlag);
+
+        }
+        System.out.println("Budget for the phase was : "+ budget);
+        return budget;
+    }
 
     public ArrayList<Item> loadItems(String phaseDir){
 
